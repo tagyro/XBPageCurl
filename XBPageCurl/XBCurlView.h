@@ -26,6 +26,8 @@
 @property (nonatomic, assign) CGFloat cylinderAngle;
 @property (nonatomic, assign) CGFloat cylinderRadius;
 
+@property BOOL isCurled;
+
 /**
  * Initializers
  * The horizontalResolution: and verticalResolution arguments determine how many rows and colums of quads (two triangles) the 3D

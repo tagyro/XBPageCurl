@@ -1093,6 +1093,9 @@ void ImageProviderReleaseData(void *info, const void *data, size_t size);
     
     //Start the rendering loop
     [self startAnimating];
+    //
+    self.isCurled = YES;
+    NSLog(@"curled: %i",self.isCurled);
 }
 
 - (void)uncurlAnimatedWithDuration:(NSTimeInterval)duration
@@ -1118,6 +1121,9 @@ void ImageProviderReleaseData(void *info, const void *data, size_t size);
     }];
     
     [self startAnimating];
+    //
+    self.isCurled = NO;
+    NSLog(@"curled: %i",self.isCurled);
 }
 
 #pragma mark - Animation and updating

@@ -58,11 +58,6 @@
     [self.snappingPointArray removeObject:snappingPoint];
 }
 
-- (void)removeAllSnappingPoints
-{
-    [self.snappingPointArray removeAllObjects];
-}
-
 - (void)updateCylinderStateWithPoint:(CGPoint)p animated:(BOOL)animated
 {
     CGPoint v = CGPointSub(p, self.startPickingPosition);

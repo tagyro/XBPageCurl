@@ -28,7 +28,6 @@
 - (void)addSnappingPoint:(XBSnappingPoint *)snappingPoint;
 - (void)addSnappingPointsFromArray:(NSArray *)snappingPoints;
 - (void)removeSnappingPoint:(XBSnappingPoint *)snappingPoint;
-- (void)removeAllSnappingPoints;
 
 @end
 

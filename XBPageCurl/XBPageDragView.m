@@ -48,7 +48,7 @@
 - (XBSnappingPoint *)cornerSnappingPoint
 {
     if (_cornerSnappingPoint == nil) {
-        _cornerSnappingPoint = [[XBSnappingPoint alloc] initWithPosition:CGPointMake(self.viewToCurl.frame.size.width, self.viewToCurl.frame.size.height) angle:3*M_PI_4 radius:30];
+        _cornerSnappingPoint = [[XBSnappingPoint alloc] initWithPosition:CGPointMake(self.viewToCurl.frame.size.width, 0) angle:DegreesToRadians(30) radius:30];
     }
     return _cornerSnappingPoint;
 }
@@ -114,6 +114,7 @@
         self.viewToCurl.hidden = YES;
         [self.pageCurlView startAnimating];
     }
+    //
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
