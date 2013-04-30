@@ -1169,6 +1169,11 @@ void ImageProviderReleaseData(void *info, const void *data, size_t size);
     
     CGPoint glCylinderPosition = CGPointMake(self.cylinderPosition.x*self.screenScale, (self.bounds.size.height - self.cylinderPosition.y)*self.screenScale);
     CGFloat glCylinderAngle = M_PI - self.cylinderAngle;
+    if (glCylinderAngle<2.2) {
+        glCylinderAngle = 2.2;
+    } else if (glCylinderAngle>3) {
+        glCylinderAngle = 3;
+    }
     CGFloat glCylinderRadius = self.cylinderRadius*self.screenScale;
     
     glUniform2f(nextPageCylinderPositionHandle, glCylinderPosition.x, glCylinderPosition.y);

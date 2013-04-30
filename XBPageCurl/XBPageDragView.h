@@ -9,7 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "XBPageCurlView.h"
 
+@protocol XBCurlDelegate <NSObject>
+
+@optional
+-(void)beginDrag;
+-(void)endDrag;
+
+@end
+
 @interface XBPageDragView : UIView
+
+@property (weak, nonatomic) id <XBCurlDelegate> delegate;
 
 @property (nonatomic, strong) IBOutlet UIView *viewToCurl;
 @property (nonatomic, readonly) BOOL pageIsCurled;

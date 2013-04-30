@@ -101,7 +101,9 @@
 {
     UITouch *touch = [touches anyObject];
     CGPoint touchLocation = [touch locationInView:self.viewToCurl.superview];
-    
+    if ([self.delegate respondsToSelector:@selector(beginDrag)]) {
+        [self.delegate beginDrag];
+    }
     if (CGRectContainsPoint(self.frame, touchLocation)) {
         self.hidden = YES;
         _pageIsCurled = YES;
@@ -155,6 +157,9 @@
         self.viewToCurl.hidden = NO;
         [self.pageCurlView removeFromSuperview];
         [self.pageCurlView stopAnimating];
+        if ([self.delegate respondsToSelector:@selector(endDrag)]) {
+            [self.delegate endDrag];
+        }
     }
 }
 
