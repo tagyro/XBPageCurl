@@ -69,6 +69,9 @@
             completion();
         }
     }];
+    if ([self.delegate respondsToSelector:@selector(endDrag)]) {
+        [self.delegate endDrag];
+    }
 }
 
 - (void)refreshPageCurlView
