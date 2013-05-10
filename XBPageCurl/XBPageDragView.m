@@ -74,6 +74,11 @@
     }
 }
 
+-(void)curlPage {
+    CGPoint touchLocation = CGPointMake(200,150);
+    [self.pageCurlView touchEndedAtPoint:touchLocation];
+}
+
 - (void)refreshPageCurlView
 {
     XBPageCurlView *pageCurlView = [[XBPageCurlView alloc] initWithFrame:self.viewToCurl.frame];
@@ -133,6 +138,7 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
+//    NSLog(@"touchesEnded");
     if (self.pageIsCurled) {
         UITouch *touch = [touches anyObject];
         CGPoint touchLocation = [touch locationInView:self.viewToCurl.superview];
@@ -142,6 +148,7 @@
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
 {
+//    NSLog(@"touchesCancelled");
     if (self.pageIsCurled) {
         UITouch *touch = [touches anyObject];
         CGPoint touchLocation = [touch locationInView:self.viewToCurl.superview];

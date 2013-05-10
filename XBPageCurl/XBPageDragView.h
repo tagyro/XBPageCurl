@@ -26,6 +26,7 @@
 @property (nonatomic, readonly) XBPageCurlView *pageCurlView;
 @property (nonatomic, readonly) XBSnappingPoint *cornerSnappingPoint;
 
+-(void)curlPage;
 - (void)uncurlPageAnimated:(BOOL)animated completion:(void (^)(void))completion;
 - (void)refreshPageCurlView;
 

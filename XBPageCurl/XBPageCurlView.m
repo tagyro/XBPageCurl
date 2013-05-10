@@ -117,30 +117,50 @@
 
 - (void)touchEndedAtPoint:(CGPoint)p
 {
+//    NSLog(@"touch ended at point: %@",NSStringFromCGPoint(p));
     if (self.snappingEnabled && self.snappingPointArray.count > 0) {
         XBSnappingPoint *closestSnappingPoint = nil;
         CGFloat d = FLT_MAX;
         CGPoint v = CGPointMake(cosf(self.cylinderAngle), sinf(self.cylinderAngle));
         //Find the snapping point closest to the cylinder axis
-        for (XBSnappingPoint *snappingPoint in self.snappingPointArray) {
-            //Compute the distance between the snappingPoint.position and the cylinder axis weighted by the snapping point weight
-            CGFloat weightedSquareDistance = CGPointToLineDistance(snappingPoint.position, self.cylinderPosition, v) / snappingPoint.weight;
-            if (weightedSquareDistance < d) {
-                closestSnappingPoint = snappingPoint;
-                d = weightedSquareDistance;
-            }
+//        for (XBSnappingPoint *snappingPoint in self.snappingPointArray) {
+//            //Compute the distance between the snappingPoint.position and the cylinder axis weighted by the snapping point weight
+//            CGFloat weightedSquareDistance = CGPointToLineDistance(snappingPoint.position, self.cylinderPosition, v) / snappingPoint.weight;
+//            if (weightedSquareDistance < d) {
+//                closestSnappingPoint = snappingPoint;
+//                d = weightedSquareDistance;
+//            }
+//        }
+        XBSnappingPoint *snappingPoint = self.snappingPointArray[1];
+        CGFloat weightedSquareDistance = CGPointToLineDistance(snappingPoint.position, self.cylinderPosition, v) / snappingPoint.weight;
+        if (weightedSquareDistance < d) {
+            closestSnappingPoint = snappingPoint;
+            d = weightedSquareDistance;
         }
+        
+        if (d<150) {
+            closestSnappingPoint = self.snappingPointArray[1];
+        } else {
+            closestSnappingPoint = self.snappingPointArray[0];
+        }
+        
+        if (p.x==200 && p.y==150) {
+            closestSnappingPoint = self.snappingPointArray[0];
+        }
+        
         
         NSAssert(closestSnappingPoint != nil, @"There is always a closest point in a non-empty set of points hence closestSnappingPoint should not be nil.");
         
         [[NSNotificationCenter defaultCenter] postNotificationName:XBPageCurlViewWillSnapToPointNotification object:self userInfo:@{kXBSnappingPointKey: closestSnappingPoint}];
-        
+//        NSLog(@"got here");
         __weak XBPageCurlView *weakSelf = self;
         CGFloat angle = CLAMP(closestSnappingPoint.angle, self.minimumCylinderAngle, self.maximumCylinderAngle);
         [self setCylinderPosition:closestSnappingPoint.position cylinderAngle:angle cylinderRadius:closestSnappingPoint.radius animatedWithDuration:kDuration completion:^{
+//            NSLog(@"and here");
             [[NSNotificationCenter defaultCenter] postNotificationName:XBPageCurlViewDidSnapToPointNotification object:weakSelf userInfo:@{kXBSnappingPointKey: closestSnappingPoint}];
         }];
     }
+//    NSLog(@"and also here");
 }
 
 

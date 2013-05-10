@@ -1094,8 +1094,7 @@ void ImageProviderReleaseData(void *info, const void *data, size_t size);
     //Start the rendering loop
     [self startAnimating];
     //
-    self.isCurled = YES;
-    NSLog(@"curled: %i",self.isCurled);
+//    self.isCurled = YES;
 }
 
 - (void)uncurlAnimatedWithDuration:(NSTimeInterval)duration
